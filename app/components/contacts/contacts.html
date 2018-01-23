@@ -1,0 +1,55 @@
+<div ui-view="">
+
+    <h1>Contactos</h1>
+
+    <button ui-sref="contacts.form" class="btn btn-primary">
+        <i class="glyphicon glyphicon-plus"></i>
+        Agregar
+    </button>
+
+    <div class="clear">&nbsp;</div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-dblclick="ctrl.detail(contact)"
+                ng-repeat="contact in ctrl.contacts track by $index">
+                <td ng-bind="contact.id"></td>
+                <td ng-bind="contact.attributes['name-first']"></td>
+                <td ng-bind="contact.attributes['name-last']"></td>
+                <td ng-bind="contact.attributes.email"></td>
+                <td>
+                    <button ng-click="ctrl.detail(contact)"
+                            uib-tooltip="Ver Detalles"
+                            class="btn btn-default btn-xs glyphicon glyphicon-eye-open">
+                    </button>
+                    <button ng-click="ctrl.updateContact(contact)"
+                            uib-tooltip="Modificar"
+                            class="btn btn-default btn-xs glyphicon glyphicon-edit">
+                    </button>
+                    <button ng-click="ctrl.modalPhone($index)"
+                            uib-tooltip="Teléfonos"
+                            class="btn btn-default btn-xs glyphicon glyphicon-earphone">
+                    </button>
+                    <button ng-click="ctrl.deleteContact(contact.links.self)"
+                            uib-tooltip="Eliminar"
+                            class="btn btn-default btn-xs glyphicon glyphicon-trash">
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <pre>
+        {{ctrl.contacts | json}}
+    </pre>
+
+</div>
